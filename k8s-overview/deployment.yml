@@ -1,24 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fResult-deployment
+  name: fResult-nginx-deployment
 spec:
-  replicas: 1
+  replicas: 3
   strategy: {}
   selector:
     matchLabels:
-      app: fResult-pod
+      app: fResult-nginx-pod
   template:
     metadata:
       labels:
-        app: fResult-pod
+        app: fResult-nginx-pod
     spec:
       containers:
-      - image: nginx
-        name: fResult-nginx
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-        ports:
-        - containerPort: 80
+        - image: nginx
+          name: fResult-nginx-container
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          restartPolicy: Always
