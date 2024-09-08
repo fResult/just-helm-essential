@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fResult-pod-<rs_hash>-<pod_hash>
+  labels:
+    app: fResult-nginx-pod
+spec:
+  containers:
+    - image: nginx
+      name: fResult-nginx-container
+      ports:
+        - containerPort: 80
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+      restartPolicy: Always
