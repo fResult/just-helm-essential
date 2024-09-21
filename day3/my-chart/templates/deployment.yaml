@@ -3,19 +3,19 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: hello
+    app: nginx-demo
   name: {{ .Release.Name }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
-      app: hello
+      app: nginx-demo
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: hello
+        app: nginx-demo
     spec:
       containers:
       - image: nginx
