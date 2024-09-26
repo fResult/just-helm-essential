@@ -1,0 +1,3 @@
+myConfig:
+  # replicas: 1
+  test: "test-on-dev"

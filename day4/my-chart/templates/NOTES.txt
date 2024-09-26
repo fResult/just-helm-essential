@@ -1,0 +1,6 @@
+CHART NAME: {{ .Chart.Name }}
+DESCRIPTION: {{ .Chart.Description }}
+MAINTAINERS:
+  {{- range $index, $maintainer := .Chart.Maintainers }}
+  {{ add $index 1 }}. {{- if eq $maintainer.Name "-" }}N/A{{- else }}{{ $maintainer.Name }}{{- end}}, {{ $maintainer.Email }}
+  {{- end }}

@@ -2,9 +2,22 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+my-chart:
+  test: "test"
+
+myApp:
+  name: nginx-demo
+  frontend:
+    foreground: purple
+    background: green
+  database:
+    name: mydb
+    conn: "mysql://user:password@tcp(localhost:3306)/mydb"
+
 myConfig:
   replicas: 3
-  test: "test"
+  test: test
+  hasValue: a
 
 image:
   repository: nginx

@@ -2,13 +2,27 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: nginx-demo
+    app: {{ default "nginx-demo" .Values.myApp.name | quote | upper }}
+    {{- if .Values.myConfig.hasValue }}
     release: {{ .Release.Name }}
+    {{- end }}
     chartVersion: {{ .Chart.Version }}
     chartApiVersion: {{ .Chart.APIVersion }}
     chartAppVersion: {{ .Chart.AppVersion }}
     chartName: {{ .Chart.Name }}
     valueTest: {{ .Values.myConfig.test }}
+    {{- with .Values.myApp }}
+    data:
+      {{- with .frontend }}
+        background: {{ .background }}
+        foreground: {{ .foreground }}
+      {{- end }}
+      {{- with .database }}
+        name: {{ .name }}
+        conn: {{ .conn }}
+      {{- end }}
+      appName: {{ $.Release.Name }}
+    {{- end }}
   name: {{ .Release.Name }}
 spec:
   replicas: {{ .Values.myConfig.replicas }}
