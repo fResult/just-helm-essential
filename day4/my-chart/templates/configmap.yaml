@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+  namespace: default
+data:
+{{- with .Values.myConfig }}
+  {{- with .frontend }}
+  background: {{ .background }}
+  foreground: {{ .foreground }}
+  {{- end }}
+  {{- with .database }}
+  database:   {{ .name }}
+  connection: {{ .conn }}
+  {{- end }}
+{{- end }}
