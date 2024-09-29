@@ -13,14 +13,16 @@ metadata:
     chartName: {{ .Chart.Name }}
     valueTest: {{ .Values.myConfig.test }}
     data:
-      {{- with .Values.myConfig.frontend }}
+    {{- with .Values.myConfig }}
+      {{- with .frontend }}
       background: {{ .background }}
       foreground: {{ .foreground }}
       {{- end }}
-      {{- with .Values.myConfig.database }}
+      {{- with .database }}
       database:   {{ .name }}
       connection: {{ .conn }}
       {{- end }}
+    {{- end }}
 spec:
   replicas: {{ .Values.myConfig.replicas }}
   selector:
