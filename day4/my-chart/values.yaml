@@ -7,17 +7,17 @@ my-chart:
 
 myApp:
   name: nginx-demo
+
+myConfig:
+  replicas: 3
+  test: test
+  appEnabled: true
   frontend:
     foreground: purple
     background: green
   database:
     name: mydb
     conn: "mysql://user:password@tcp(localhost:3306)/mydb"
-
-myConfig:
-  replicas: 3
-  test: test
-  hasValue: a
 
 image:
   repository: nginx

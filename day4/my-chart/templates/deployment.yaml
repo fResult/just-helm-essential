@@ -1,9 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: {{ .Release.Name }}
   labels:
-    app: {{.Values.myApp.name | default "nginx-default" | quote | upper }}
-    {{- if .Values.myConfig.hasValue }}
+    app: {{ .Values.myApp.name | default "nginx-default" | quote | upper }}
+    {{- if .Values.myConfig.appEnabled }}
     release: {{ .Release.Name }}
     {{- end }}
     chartVersion: {{ .Chart.Version }}
@@ -11,7 +12,15 @@ metadata:
     chartAppVersion: {{ .Chart.AppVersion }}
     chartName: {{ .Chart.Name }}
     valueTest: {{ .Values.myConfig.test }}
-  name: {{ .Release.Name }}
+    data:
+      {{- with .Values.myConfig.frontend }}
+      background: {{ .background }}
+      foreground: {{ .foreground }}
+      {{- end }}
+      {{- with .Values.myConfig.database }}
+      database:   {{ .name }}
+      connection: {{ .conn }}
+      {{- end }}
 spec:
   replicas: {{ .Values.myConfig.replicas }}
   selector:
