@@ -14,3 +14,7 @@ data:
   connection: {{ .conn }}
   {{- end }}
 {{- end }}
+  weeks:
+  {{- range $day := .Values.myConfig.days }}
+    - {{ $day | quote }}
+  {{- end }}

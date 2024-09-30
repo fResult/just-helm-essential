@@ -18,6 +18,14 @@ myConfig:
   database:
     name: mydb
     conn: "mysql://user:password@tcp(localhost:3306)/mydb"
+  days:
+    - Monday
+    - Tuesday
+    - Wednesday
+    - Thursday
+    - Friday
+    - Saturday
+    - Sunday
 
 image:
   repository: nginx
